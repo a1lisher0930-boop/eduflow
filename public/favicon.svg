@@ -1,0 +1,30 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#4f46e5" />
+      <stop offset="100%" stopColor="#0891b2" />
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fef08a" />
+      <stop offset="100%" stopColor="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Bright Vibrant Rounded Square Background for Chrome Tab -->
+  <rect width="48" height="48" rx="12" fill="url(#favBg)" />
+
+  <!-- Sunburst Rays -->
+  <path d="M24 5V9" stroke="#fef08a" stroke-width="3" stroke-linecap="round" />
+  <path d="M15 7L17.5 10.5" stroke="#fef08a" stroke-width="3" stroke-linecap="round" />
+  <path d="M33 7L30.5 10.5" stroke="#fef08a" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Rising Sun Arc -->
+  <path d="M15 18C15 13.03 19.03 9 24 9C28.97 9 33 13.03 33 18H15Z" fill="url(#sunGrad)" />
+
+  <!-- Open Book Outline in Bright White -->
+  <path d="M6 20C13 20 19 22.5 24 24.5C29 22.5 35 20 42 20V39C35 39 29 41.5 24 43.5C19 41.5 13 39 6 39V20Z" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" fill="#1e1b4b" fill-opacity="0.3" />
+  <path d="M24 24.5V43.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Crisp White Bold 'e' Letter -->
+  <text x="24" y="36" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="900" font-family="Plus Jakarta Sans, Inter, sans-serif" font-style="italic">e</text>
+</svg>
