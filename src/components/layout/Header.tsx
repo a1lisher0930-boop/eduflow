@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
@@ -12,7 +14,8 @@ import {
   BookOpen,
   FileText,
   Trophy,
-  ChevronRight
+  ChevronRight,
+  LogOut
 } from 'lucide-react';
 import { NotificationItem, StudentProfile, PageId } from '../../types';
 
@@ -28,6 +31,7 @@ interface HeaderProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   setActivePage: (page: PageId) => void;
+  onLogout: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -41,7 +45,8 @@ export const Header: React.FC<HeaderProps> = ({
   collapsed,
   searchQuery,
   setSearchQuery,
-  setActivePage
+  setActivePage,
+  onLogout
 }) => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
@@ -222,6 +227,16 @@ export const Header: React.FC<HeaderProps> = ({
                 {student.class}
               </span>
             </div>
+          </button>
+
+          {/* Log Out Button */}
+          <button
+            onClick={onLogout}
+            className="p-2.5 rounded-2xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-600 transition-all shadow-sm flex items-center gap-1.5 text-xs font-bold"
+            title="Hisobdan chiqish"
+          >
+            <LogOut className="w-4 h-4" />
+            <span className="hidden xl:inline">Chiqish</span>
           </button>
 
         </div>

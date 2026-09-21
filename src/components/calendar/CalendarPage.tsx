@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, Sparkles } from 'lucide-react';
 import { Card } from '../common/Card';

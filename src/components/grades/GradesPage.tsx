@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { 
   GraduationCap, 
@@ -14,6 +16,8 @@ import {
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
 import { Modal } from '../common/Modal';
+import { GradeBadge } from '../common/GradeBadge';
+import { getGradeColorInfo } from '../../utils/gradeColors';
 import { SubjectGradeSummary, GradeItem } from '../../types';
 
 interface GradesPageProps {
@@ -39,12 +43,12 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
 
   // Chart dataset for trend bar visualization (integer 1-10 scale)
   const trendData = [
-    { label: '1-Hafta', score: 8 },
-    { label: '2-Hafta', score: 9 },
-    { label: '3-Hafta', score: 9 },
-    { label: '4-Hafta', score: 9 },
-    { label: '5-Hafta', score: 10 },
-    { label: '6-Hafta', score: 9 },
+    { label: '1-Hafta', score: 4 },
+    { label: '2-Hafta', score: 6 },
+    { label: '3-Hafta', score: 7 },
+    { label: '4-Hafta', score: 8 },
+    { label: '5-Hafta', score: 9 },
+    { label: '6-Hafta', score: 10 },
     { label: '7-Hafta', score: 9 },
   ];
 
@@ -92,10 +96,8 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
             Joriy O‘rtacha Ball
           </span>
           <div className="mt-3 flex items-baseline justify-between">
-            <div className="flex items-baseline gap-1">
-              <span className="text-3xl font-extrabold text-brand-600 dark:text-cyan-400">
-                {currentAvg}
-              </span>
+            <div className="flex items-baseline gap-2">
+              <GradeBadge score={currentAvg} size="xl" />
               <span className="text-xs font-bold text-slate-400">/ 10</span>
             </div>
             <Badge variant="success" size="sm">
@@ -110,10 +112,8 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
             O‘tgan Chorak O‘rtacha
           </span>
           <div className="mt-3 flex items-baseline justify-between">
-            <div className="flex items-baseline gap-1">
-              <span className="text-3xl font-extrabold text-slate-700 dark:text-slate-300">
-                {previousAvg}
-              </span>
+            <div className="flex items-baseline gap-2">
+              <GradeBadge score={previousAvg} size="xl" />
               <span className="text-xs font-bold text-slate-400">/ 10</span>
             </div>
             <Badge variant="slate" size="sm">
@@ -128,9 +128,7 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
             Eng Yuqori Baho
           </span>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">
-              {highest}
-            </span>
+            <GradeBadge score={highest} size="xl" />
             <Badge variant="success" size="sm">
               10 (A’lo)
             </Badge>
@@ -143,11 +141,9 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
             Eng Past Baho
           </span>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-3xl font-extrabold text-amber-600 dark:text-amber-400">
-              {lowest}
-            </span>
+            <GradeBadge score={lowest} size="xl" />
             <Badge variant="warning" size="sm">
-              Yaxshi
+              {lowest} ball
             </Badge>
           </div>
           <p className="mt-2 text-[11px] text-slate-500">Fizika fani bo‘yicha</p>
@@ -164,34 +160,47 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
               O‘zlashtirish Dinamikasi Grafigi (10 Ballik Shkala)
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Haftalar kesimida umumiy o‘rtacha ball o‘zgarishi
+              Haftalar kesimida umumiy o‘rtacha ball o‘zgarishi (Ranglar 10-ballik gradiyentda)
             </p>
           </div>
 
           <div className="flex items-center gap-2 text-xs">
             <span className="flex items-center gap-1 text-slate-600 dark:text-slate-300 font-semibold">
-              <span className="w-3 h-3 rounded-full bg-brand-500 inline-block" />
-              O‘rtacha Ball
+              <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" />
+              Yuqori (10)
+            </span>
+            <span className="flex items-center gap-1 text-slate-600 dark:text-slate-300 font-semibold">
+              <span className="w-3 h-3 rounded-full bg-amber-400 inline-block" />
+              O‘rta (5)
+            </span>
+            <span className="flex items-center gap-1 text-slate-600 dark:text-slate-300 font-semibold">
+              <span className="w-3 h-3 rounded-full bg-rose-500 inline-block" />
+              Past (1)
             </span>
           </div>
         </div>
 
         {/* Visual Custom Interactive SVG Progress Chart */}
         <div className="pt-6 pb-2">
-          <div className="h-48 w-full flex items-end justify-between gap-2 sm:gap-4 border-b border-slate-200 dark:border-slate-800 px-2 sm:px-4">
-            {trendData.map((item, idx) => {
+          <div className="h-52 w-full flex items-end justify-between gap-2 sm:gap-4 border-b border-slate-200 dark:border-slate-800 px-2 sm:px-4">
+            {trendData.map((item) => {
               const heightPercent = (item.score / 10) * 100;
+              const colorInfo = getGradeColorInfo(item.score);
+
               return (
-                <div key={idx} className="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+                <div key={item.label} className="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
                   {/* Tooltip on Hover */}
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold px-2 py-0.5 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-md">
-                    {item.score} ball
+                    {item.score} ball ({colorInfo.label})
                   </div>
 
                   <div className="w-full bg-slate-100 dark:bg-slate-800/80 rounded-t-xl h-full flex items-end p-1">
                     <div
-                      className="w-full bg-gradient-to-t from-brand-600 via-indigo-500 to-cyan-400 rounded-t-lg transition-all duration-500 group-hover:brightness-110"
-                      style={{ height: `${heightPercent}%` }}
+                      className="w-full rounded-t-lg transition-all duration-500 group-hover:brightness-110 shadow-sm"
+                      style={{ 
+                        height: `${heightPercent}%`,
+                        backgroundColor: colorInfo.bg,
+                      }}
                     />
                   </div>
 
@@ -229,59 +238,61 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSummaries.map((sub) => (
-            <Card key={sub.subject} className="flex flex-col justify-between space-y-4">
-              
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-                    {sub.subject}
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    O‘qituvchi: {sub.teacher}
-                  </p>
+          {filteredSummaries.map((sub) => {
+            const subColorInfo = getGradeColorInfo(sub.currentAverage);
+
+            return (
+              <Card key={sub.subject} className="flex flex-col justify-between space-y-4">
+                
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                      {sub.subject}
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      O‘qituvchi: {sub.teacher}
+                    </p>
+                  </div>
+
+                  <GradeBadge score={sub.currentAverage} size="xl" />
                 </div>
 
-                <div 
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center font-extrabold text-lg text-white shadow-md"
-                  style={{ backgroundColor: sub.color }}
-                >
-                  {sub.currentAverage}
+                {/* Progress Bar */}
+                <div className="space-y-1.5">
+                  <div className="flex justify-between text-xs font-semibold">
+                    <span className="text-slate-500">O‘zlashtirish ko‘rsatkichi</span>
+                    <span className="text-slate-800 dark:text-slate-200 font-bold">{sub.currentAverage} ball</span>
+                  </div>
+                  <div className="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ 
+                        width: `${(sub.currentAverage / 10) * 100}%`,
+                        backgroundColor: subColorInfo.bg 
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Progress Bar */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-500">O‘zlashtirish ko‘rsatkichi</span>
-                  <span className="text-slate-800 dark:text-slate-200">{sub.currentAverage} ball</span>
+                {/* Stats Footer */}
+                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-3 gap-2 text-center text-xs">
+                  <div>
+                    <span className="text-slate-400 text-[10px] block">Eng yuqori</span>
+                    <GradeBadge score={sub.highestGrade} size="sm" />
+                  </div>
+                  <div>
+                    <span className="text-slate-400 text-[10px] block">Eng past</span>
+                    <GradeBadge score={sub.lowestGrade} size="sm" />
+                  </div>
+                  <div>
+                    <span className="text-slate-400 text-[10px] block">Jami baholar</span>
+                    <span className="font-bold text-brand-600 dark:text-cyan-400">{sub.totalGrades} ta</span>
+                  </div>
                 </div>
-                <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{ width: `${(sub.currentAverage / 10) * 100}%`, backgroundColor: sub.color }}
-                  />
-                </div>
-              </div>
 
-              {/* Stats Footer */}
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-3 gap-2 text-center text-xs">
-                <div>
-                  <span className="text-slate-400 text-[10px] block">Eng yuqori</span>
-                  <span className="font-bold text-slate-800 dark:text-slate-200">{sub.highestGrade}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 text-[10px] block">Eng past</span>
-                  <span className="font-bold text-slate-800 dark:text-slate-200">{sub.lowestGrade}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 text-[10px] block">Jami baholar</span>
-                  <span className="font-bold text-brand-600 dark:text-cyan-400">{sub.totalGrades} ta</span>
-                </div>
-              </div>
-
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
       </div>
 
@@ -323,9 +334,7 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
                   </td>
                   <td className="py-3 px-2 text-slate-500">{g.quarter}-Chorak</td>
                   <td className="py-3 px-2 text-right">
-                    <span className="inline-flex items-center justify-center min-w-[36px] px-2 h-7 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-extrabold">
-                      {g.score}
-                    </span>
+                    <GradeBadge score={g.score} variant="solid" size="md" />
                   </td>
                 </tr>
               ))}
@@ -342,14 +351,12 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
       >
         {selectedGradeDetail && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800">
+            <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
               <div>
-                <span className="text-xs text-slate-500 dark:text-slate-400 block">Qo‘yilgan Ball</span>
-                <span className="text-3xl font-extrabold text-brand-600 dark:text-cyan-400">
-                  {selectedGradeDetail.score} ball ({selectedGradeDetail.score >= 9 ? 'A’lo' : selectedGradeDetail.score >= 7 ? 'Yaxshi' : 'Qanoatli'})
-                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 block mb-1">Qo‘yilgan Ball</span>
+                <GradeBadge score={selectedGradeDetail.score} size="xl" showLabel />
               </div>
-              <Badge variant="success" size="lg">
+              <Badge variant="primary" size="lg">
                 {selectedGradeDetail.type}
               </Badge>
             </div>
@@ -380,3 +387,4 @@ export const GradesPage: React.FC<GradesPageProps> = ({ subjectSummaries, recent
     </div>
   );
 };
+

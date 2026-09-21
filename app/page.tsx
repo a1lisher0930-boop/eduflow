@@ -1,22 +1,24 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Sidebar, sidebarItems } from './components/layout/Sidebar';
-import { Header } from './components/layout/Header';
-import { DashboardOverview } from './components/dashboard/DashboardOverview';
-import { TimetablePage } from './components/timetable/TimetablePage';
-import { GradesPage } from './components/grades/GradesPage';
-import { AttendancePage } from './components/attendance/AttendancePage';
-import { HomeworkPage } from './components/homework/HomeworkPage';
-import { ExamsPage } from './components/exams/ExamsPage';
-import { RankingPage } from './components/ranking/RankingPage';
-import { AchievementsPage } from './components/achievements/AchievementsPage';
-import { GoalsPage } from './components/goals/GoalsPage';
-import { AnalyticsPage } from './components/analytics/AnalyticsPage';
-import { AnnouncementsPage } from './components/announcements/AnnouncementsPage';
-import { CalendarPage } from './components/calendar/CalendarPage';
-import { ProfilePage } from './components/profile/ProfilePage';
-import { SettingsPage } from './components/settings/SettingsPage';
-import { LoginPage } from './components/auth/LoginPage';
-import { PageId } from './types';
+import { Sidebar, sidebarItems } from '@/components/layout/Sidebar';
+import { Header } from '@/components/layout/Header';
+import { DashboardOverview } from '@/components/dashboard/DashboardOverview';
+import { TimetablePage } from '@/components/timetable/TimetablePage';
+import { GradesPage } from '@/components/grades/GradesPage';
+import { AttendancePage } from '@/components/attendance/AttendancePage';
+import { HomeworkPage } from '@/components/homework/HomeworkPage';
+import { ExamsPage } from '@/components/exams/ExamsPage';
+import { RankingPage } from '@/components/ranking/RankingPage';
+import { AchievementsPage } from '@/components/achievements/AchievementsPage';
+import { GoalsPage } from '@/components/goals/GoalsPage';
+import { AnalyticsPage } from '@/components/analytics/AnalyticsPage';
+import { AnnouncementsPage } from '@/components/announcements/AnnouncementsPage';
+import { CalendarPage } from '@/components/calendar/CalendarPage';
+import { ProfilePage } from '@/components/profile/ProfilePage';
+import { SettingsPage } from '@/components/settings/SettingsPage';
+import { LoginPage } from '@/components/auth/LoginPage';
+import { PageId } from '@/types';
 import {
   initialStudentProfile,
   mockLessons,
@@ -31,13 +33,11 @@ import {
   mockNotifications,
   mockAnnouncements,
   mockCalendarEvents
-} from './mock/data';
+} from '@/mock/data';
 
-export const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return localStorage.getItem('eduflow_auth') === 'true';
-  });
-
+export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<PageId>('dashboard');
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
@@ -59,27 +59,44 @@ export const App: React.FC = () => {
   const [announcements] = useState(mockAnnouncements);
   const [calendarEvents] = useState(mockCalendarEvents);
 
+  // Sync mounted state and read localStorage on client side
+  useEffect(() => {
+    setMounted(true);
+    const authSaved = localStorage.getItem('eduflow_auth') === 'true';
+    setIsAuthenticated(authSaved);
+  }, []);
+
   // Sync dark mode class on html root
   useEffect(() => {
+    if (!mounted) return;
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [darkMode]);
+  }, [darkMode, mounted]);
 
   // Toggle homework completion state & update metrics
   const handleToggleHomework = (id: string) => {
     setHomeworkList(prev => {
       const updated = prev.map(hw => hw.id === id ? { ...hw, completed: !hw.completed } : hw);
       
-      // Recalculate completed HW percentage
       const completedCount = updated.filter(h => h.completed).length;
       const newPercent = Math.round((completedCount / updated.length) * 100);
       setStudent(s => ({ ...s, completedHomeworkPercent: newPercent }));
 
       return updated;
     });
+  };
+
+  const handleLoginSuccess = () => {
+    localStorage.setItem('eduflow_auth', 'true');
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('eduflow_auth');
+    setIsAuthenticated(false);
   };
 
   // Render current view component
@@ -129,15 +146,17 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleLoginSuccess = () => {
-    localStorage.setItem('eduflow_auth', 'true');
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('eduflow_auth');
-    setIsAuthenticated(false);
-  };
+  // Render skeletal loader while mounting on client to avoid hydration flicker
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+          <span className="text-xs font-bold text-slate-300">EduFlow Platformasi Yuklanmoqda...</span>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return <LoginPage onLoginSuccess={handleLoginSuccess} />;
@@ -213,6 +232,4 @@ export const App: React.FC = () => {
 
     </div>
   );
-};
-
-export default App;
+}

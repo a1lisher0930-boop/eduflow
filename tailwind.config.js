@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
@@ -31,7 +31,7 @@ export default {
         darkBorder: '#334155',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        sans: ['var(--font-plus-jakarta)', 'var(--font-inter)', 'Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       boxShadow: {
         'glow': '0 0 20px -5px rgba(99, 102, 241, 0.4)',
@@ -52,4 +52,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

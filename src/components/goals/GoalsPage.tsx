@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Target, Plus, CheckCircle2, TrendingUp, Sparkles, Calendar } from 'lucide-react';
 import { Card } from '../common/Card';

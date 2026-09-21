@@ -1,7 +1,10 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Trophy, Award, TrendingUp, Filter, Sparkles, Star, UserCheck } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
+import { GradeBadge } from '../common/GradeBadge';
 import { RankingStudent } from '../../types';
 
 interface RankingPageProps {
@@ -147,9 +150,7 @@ export const RankingPage: React.FC<RankingPageProps> = ({ rankingList }) => {
                   </td>
 
                   <td className="py-4 px-3 text-right">
-                    <span className="text-base font-extrabold text-brand-600 dark:text-cyan-400">
-                      {st.overallScore} ball
-                    </span>
+                    <GradeBadge score={st.overallScore} size="md" showLabel />
                   </td>
                 </tr>
               ))}

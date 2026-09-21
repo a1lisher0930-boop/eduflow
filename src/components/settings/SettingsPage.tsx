@@ -1,14 +1,17 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Settings, Moon, Sun, Bell, Shield, UserCheck, CheckCircle2, Save } from 'lucide-react';
+import { Settings, Moon, Sun, Bell, Shield, UserCheck, CheckCircle2, Save, LogOut } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
 
 interface SettingsPageProps {
   darkMode: boolean;
   setDarkMode: (val: boolean) => void;
+  onLogout?: () => void;
 }
 
-export const SettingsPage: React.FC<SettingsPageProps> = ({ darkMode, setDarkMode }) => {
+export const SettingsPage: React.FC<SettingsPageProps> = ({ darkMode, setDarkMode, onLogout }) => {
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   const [notifGrade, setNotifGrade] = useState(true);
@@ -123,6 +126,27 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ darkMode, setDarkMod
             ))}
           </div>
         </Card>
+
+        {/* Account Security & Logout */}
+        {onLogout && (
+          <Card className="space-y-4 border-rose-200/60 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Shield className="w-5 h-5 text-rose-500" />
+              Hisob Havfsizligi va Chiqish
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Platformadagi joriy seansni tugatish va qayta kirish oynasiga o‘tish
+            </p>
+            <button
+              type="button"
+              onClick={onLogout}
+              className="px-5 py-2.5 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Hisobdan Chiqish</span>
+            </button>
+          </Card>
+        )}
 
         <div className="flex justify-end">
           <button

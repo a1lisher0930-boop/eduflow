@@ -190,7 +190,7 @@ export const mockLessons: Lesson[] = [
 
 export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
   {
-    subject: 'Matematika',
+    subject: 'Algebra',
     currentAverage: 9,
     previousAverage: 9,
     highestGrade: 10,
@@ -198,7 +198,18 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 18,
     iconName: 'Calculator',
     color: '#6366f1',
-    teacher: 'Shoxrux Qodirov'
+    teacher: 'YEROVA R.S.'
+  },
+  {
+    subject: 'Geometriya',
+    currentAverage: 8,
+    previousAverage: 8,
+    highestGrade: 9,
+    lowestGrade: 7,
+    totalGrades: 14,
+    iconName: 'Compass',
+    color: '#4f46e5',
+    teacher: 'YEROVA R.S.'
   },
   {
     subject: 'Informatika',
@@ -209,7 +220,7 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 22,
     iconName: 'Code',
     color: '#06b6d4',
-    teacher: 'Nilufar Karimova'
+    teacher: 'Kadirov A.K.'
   },
   {
     subject: 'Ingliz tili',
@@ -220,18 +231,18 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 16,
     iconName: 'Globe',
     color: '#3b82f6',
-    teacher: 'Dilnoza Axmedova'
+    teacher: 'Tursunova N.T.'
   },
   {
     subject: 'Fizika',
     currentAverage: 8,
-    previousAverage: 8,
+    previousAverage: 7,
     highestGrade: 9,
-    lowestGrade: 7,
-    totalGrades: 14,
+    lowestGrade: 6,
+    totalGrades: 15,
     iconName: 'Atom',
     color: '#a855f7',
-    teacher: 'Jasur Usmonov'
+    teacher: 'Asrayeva D.A.'
   },
   {
     subject: 'Biologiya',
@@ -242,18 +253,18 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 12,
     iconName: 'Dna',
     color: '#10b981',
-    teacher: 'Gulnora Aliyeva'
+    teacher: 'Toshboyeva S.J.'
   },
   {
     subject: 'Kimyo',
-    currentAverage: 9,
+    currentAverage: 8,
     previousAverage: 8,
     highestGrade: 9,
-    lowestGrade: 8,
+    lowestGrade: 7,
     totalGrades: 11,
     iconName: 'FlaskConical',
     color: '#f59e0b',
-    teacher: 'Rustam Sobirov'
+    teacher: 'Dushabayeva M.M.'
   },
   {
     subject: 'Ona tili',
@@ -264,10 +275,21 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 15,
     iconName: 'BookOpen',
     color: '#ec4899',
-    teacher: 'Feruza Umarova'
+    teacher: 'Israilova Z.U.'
   },
   {
-    subject: 'Tarix',
+    subject: 'Adabiyot',
+    currentAverage: 9,
+    previousAverage: 8,
+    highestGrade: 10,
+    lowestGrade: 8,
+    totalGrades: 13,
+    iconName: 'BookMarked',
+    color: '#d946ef',
+    teacher: 'Israilova Z.U.'
+  },
+  {
+    subject: 'O‘zbekiston tarixi',
     currentAverage: 9,
     previousAverage: 9,
     highestGrade: 10,
@@ -275,19 +297,141 @@ export const mockSubjectGradeSummaries: SubjectGradeSummary[] = [
     totalGrades: 10,
     iconName: 'Landmark',
     color: '#8b5cf6',
-    teacher: 'Otabek Yoqubov'
+    teacher: 'Muminova L.O.'
+  },
+  {
+    subject: 'Umumjahon tarixi',
+    currentAverage: 8,
+    previousAverage: 8,
+    highestGrade: 9,
+    lowestGrade: 7,
+    totalGrades: 9,
+    iconName: 'History',
+    color: '#7c3aed',
+    teacher: 'Muminova L.O.'
+  },
+  {
+    subject: 'Geografiya',
+    currentAverage: 8,
+    previousAverage: 8,
+    highestGrade: 9,
+    lowestGrade: 7,
+    totalGrades: 11,
+    iconName: 'Map',
+    color: '#14b8a6',
+    teacher: 'Pirnazarov B.E.'
+  },
+  {
+    subject: 'Texnologiya',
+    currentAverage: 10,
+    previousAverage: 9,
+    highestGrade: 10,
+    lowestGrade: 9,
+    totalGrades: 8,
+    iconName: 'Wrench',
+    color: '#f97316',
+    teacher: 'Ismoilov A.Z.'
+  },
+  {
+    subject: 'Davlat va huquq',
+    currentAverage: 9,
+    previousAverage: 8,
+    highestGrade: 10,
+    lowestGrade: 8,
+    totalGrades: 8,
+    iconName: 'Scale',
+    color: '#0284c7',
+    teacher: 'Yuldashev A.A.'
+  },
+  {
+    subject: 'Rus tili (n)',
+    currentAverage: 8,
+    previousAverage: 7,
+    highestGrade: 9,
+    lowestGrade: 6,
+    totalGrades: 12,
+    iconName: 'Languages',
+    color: '#ef4444',
+    teacher: 'Xabilova N.A.'
+  },
+  {
+    subject: 'Jismoniy madaniyat',
+    currentAverage: 10,
+    previousAverage: 10,
+    highestGrade: 10,
+    lowestGrade: 9,
+    totalGrades: 16,
+    iconName: 'Activity',
+    color: '#22c55e',
+    teacher: 'YUNUSOVA X.T.'
+  },
+  {
+    subject: 'Chizmachilik',
+    currentAverage: 8,
+    previousAverage: 8,
+    highestGrade: 9,
+    lowestGrade: 7,
+    totalGrades: 7,
+    iconName: 'PenTool',
+    color: '#64748b',
+    teacher: 'Raimqulova G.U.'
+  },
+  {
+    subject: 'Tarbiya',
+    currentAverage: 10,
+    previousAverage: 9,
+    highestGrade: 10,
+    lowestGrade: 9,
+    totalGrades: 8,
+    iconName: 'HeartHandshake',
+    color: '#eab308',
+    teacher: 'Mixtibayeva G.S.'
+  },
+  {
+    subject: 'Kelajak soatlari',
+    currentAverage: 10,
+    previousAverage: 10,
+    highestGrade: 10,
+    lowestGrade: 10,
+    totalGrades: 6,
+    iconName: 'Sparkles',
+    color: '#a855f7',
+    teacher: 'Israilova Z.U.'
+  },
+  {
+    subject: 'Iqtisodiyot',
+    currentAverage: 8,
+    previousAverage: 8,
+    highestGrade: 9,
+    lowestGrade: 7,
+    totalGrades: 7,
+    iconName: 'Coins',
+    color: '#059669',
+    teacher: 'Raximova M.M.'
   }
 ];
 
 export const mockRecentGrades: GradeItem[] = [
   { id: 'g1', subject: 'Informatika', score: 10, date: '14 Sentyabr', quarter: 1, type: 'Nazorat', teacherNote: 'Algoritmik topshiriq mukammal bajarilgan!' },
-  { id: 'g2', subject: 'Matematika', score: 9, date: '12 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Trigonometriya tenglamalar to‘g‘ri yechildi.' },
-  { id: 'g3', subject: 'Ingliz tili', score: 9, date: '11 Sentyabr', quarter: 1, type: 'Mustaqil ish', teacherNote: 'Grammar and vocabulary test passed with excellence.' },
-  { id: 'g4', subject: 'Fizika', score: 8, date: '10 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Vektorlar bo‘yicha biroz ehtiyotkor bo‘ling.' },
-  { id: 'g5', subject: 'Biologiya', score: 10, date: '08 Sentyabr', quarter: 1, type: 'Nazorat', teacherNote: 'Hujayra biologiyasi bo‘yicha a’lo javob.' },
-  { id: 'g6', subject: 'Kimyo', score: 9, date: '05 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Organik reaksiya tenglamasi to‘g‘ri.' },
-  { id: 'g7', subject: 'Ona tili', score: 9, date: '03 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Imlo qoidalariga rioya qilingan.' },
-  { id: 'g8', subject: 'Matematika', score: 10, date: '01 Sentyabr', quarter: 1, type: 'Choraklik', teacherNote: 'Mantiqiy masalalar yechimi yuksak ballga munosib.' }
+  { id: 'g2', subject: 'Algebra', score: 9, date: '14 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Trigonometriya tenglamalar to‘g‘ri yechildi.' },
+  { id: 'g3', subject: 'Kelajak soatlari', score: 10, date: '14 Sentyabr', quarter: 1, type: 'Amaliy', teacherNote: 'Loyiha rejasi yuksak baholandi.' },
+  { id: 'g4', subject: 'Biologiya', score: 9, date: '14 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Hujayra strukturasi savollariga to‘g‘ri javob berildi.' },
+  { id: 'g5', subject: 'Kimyo', score: 8, date: '14 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Reaksiya tenglamasida kichik aniqlik kiritilsin.' },
+  { id: 'g6', subject: 'Rus tili (n)', score: 7, date: '14 Sentyabr', quarter: 1, type: 'Mustaqil ish', teacherNote: 'Lug‘at ustida yana ozgina ishlash kerak.' },
+  { id: 'g7', subject: 'Tarbiya', score: 10, date: '13 Sentyabr', quarter: 1, type: 'Amaliy', teacherNote: 'Prezentatsiya va jamoaviy ishi a’lo!' },
+  { id: 'g8', subject: 'O‘zbekiston tarixi', score: 9, date: '13 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Temuriylar davri manbalari to‘g‘ri tahlil qilingan.' },
+  { id: 'g9', subject: 'Geografiya', score: 8, date: '13 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Xaritadan joylarni ko‘rsatish amaliyoti yaxshi.' },
+  { id: 'g10', subject: 'Ona tili', score: 9, date: '12 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Qo‘shma gaplar mashqi xatosiz bajarildi.' },
+  { id: 'g11', subject: 'Texnologiya', score: 10, date: '12 Sentyabr', quarter: 1, type: 'Amaliy', teacherNote: 'Hunarmandchilik albomi a’lo tayyorlangan.' },
+  { id: 'g12', subject: 'Fizika', score: 7, date: '12 Sentyabr', quarter: 1, type: 'Nazorat', teacherNote: 'Nyuton qonunlari masalalarini qayta takrorlang.' },
+  { id: 'g13', subject: 'Davlat va huquq', score: 9, date: '12 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Konstitutsiya moddalari bilimingiz yuqori.' },
+  { id: 'g14', subject: 'Ingliz tili', score: 9, date: '12 Sentyabr', quarter: 1, type: 'Mustaqil ish', teacherNote: 'IELTS Essay writing task completed with High Band.' },
+  { id: 'g15', subject: 'Umumjahon tarixi', score: 8, date: '11 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Uyg‘onish davri madaniyati mavzusi o‘zlashtirildi.' },
+  { id: 'g16', subject: 'Jismoniy madaniyat', score: 10, date: '11 Sentyabr', quarter: 1, type: 'Amaliy', teacherNote: 'Sakrash normativlari a’lo topshirildi.' },
+  { id: 'g17', subject: 'Chizmachilik', score: 8, date: '11 Sentyabr', quarter: 1, type: 'Amaliy', teacherNote: 'A3 chizma proyeksiya chiziqlari to‘g‘ri.' },
+  { id: 'g18', subject: 'Geometriya', score: 8, date: '10 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Fazoviy shakllar yuzi to‘g‘ri hisoblandi.' },
+  { id: 'g19', subject: 'Adabiyot', score: 9, date: '10 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'G‘azallarni yoddan aytish mahorati yuqori.' },
+  { id: 'g20', subject: 'Iqtisodiyot', score: 8, date: '10 Sentyabr', quarter: 1, type: 'Joriy', teacherNote: 'Bozor iqtisodiyoti qonunlari tahlili yaxshi.' }
 ];
 
 export const mockAttendanceDays: AttendanceDay[] = [

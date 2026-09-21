@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { FileText, Calendar, Clock, MapPin, CheckCircle2, User, Sparkles, BookOpen } from 'lucide-react';
 import { Card } from '../common/Card';
@@ -96,9 +98,9 @@ export const ExamsPage: React.FC<ExamsPageProps> = ({ exams }) => {
                 Qamrab olingan asosiy mavzular:
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {exam.topics.map((t, idx) => (
+                {exam.topics.map((t) => (
                   <span
-                    key={idx}
+                    key={t}
                     className="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-600 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50 flex items-center gap-1"
                   >
                     <BookOpen className="w-3 h-3 text-brand-500" />
@@ -115,3 +117,4 @@ export const ExamsPage: React.FC<ExamsPageProps> = ({ exams }) => {
     </div>
   );
 };
+

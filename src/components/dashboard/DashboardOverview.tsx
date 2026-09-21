@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { 
   Sparkles, 
@@ -19,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
+import { GradeBadge } from '../common/GradeBadge';
 import { Subtle3DHeader } from '../common/Subtle3DHeader';
 import { 
   StudentProfile, 
@@ -115,10 +118,8 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             </div>
           </div>
           <div className="mt-4 flex items-baseline justify-between">
-            <div className="flex items-baseline gap-1">
-              <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-                {student.overallScore}
-              </span>
+            <div className="flex items-baseline gap-2">
+              <GradeBadge score={student.overallScore} size="lg" />
               <span className="text-xs font-bold text-slate-400">/ 10 ball</span>
             </div>
             <Badge variant="success" size="sm">
@@ -374,7 +375,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-emerald-500" />
-                Oxirgi baholar
+                Oxirgi baholar (1–10 Ball)
               </h3>
               <button
                 onClick={() => setActivePage('grades')}
@@ -385,7 +386,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             </div>
 
             <div className="space-y-3">
-              {recentGrades.slice(0, 4).map((grade) => (
+              {recentGrades.slice(0, 5).map((grade) => (
                 <div
                   key={grade.id}
                   className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800"
@@ -400,9 +401,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <div className="min-w-[36px] h-8 px-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-extrabold text-xs sm:text-sm flex items-center justify-center border border-emerald-500/20">
-                      {grade.score}
-                    </div>
+                    <GradeBadge score={grade.score} variant="solid" size="md" />
                   </div>
                 </div>
               ))}

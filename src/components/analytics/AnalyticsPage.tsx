@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { BarChart3, TrendingUp, Award, AlertCircle, Zap, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Card } from '../common/Card';
@@ -144,8 +146,8 @@ export const AnalyticsPage: React.FC = () => {
                 { label: '3-Hafta', student: 9, classAvg: 8 },
                 { label: '4-Hafta', student: 9, classAvg: 8 },
                 { label: '5-Hafta', student: 10, classAvg: 8 },
-              ].map((item, idx) => (
-                <div key={idx} className="space-y-1.5">
+              ].map((item) => (
+                <div key={item.label} className="space-y-1.5">
                   <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
                     <span>{item.label}</span>
                     <span className="text-brand-600 dark:text-cyan-400">Siz: {item.student} ball (Sinf: {item.classAvg} ball)</span>

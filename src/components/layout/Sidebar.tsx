@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { 
   LayoutDashboard, 
@@ -16,7 +18,8 @@ import {
   Settings,
   Sparkles,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  LogOut
 } from 'lucide-react';
 import { PageId } from '../../types';
 import { EduFlowLogo } from '../common/EduFlowLogo';
@@ -28,6 +31,7 @@ interface SidebarProps {
   setCollapsed: (collapsed: boolean) => void;
   mobileOpen: boolean;
   setMobileOpen: (open: boolean) => void;
+  onLogout: () => void;
 }
 
 export const sidebarItems: { id: PageId; label: string; icon: React.ElementType; badge?: string }[] = [
@@ -53,7 +57,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   collapsed,
   setCollapsed,
   mobileOpen,
-  setMobileOpen
+  setMobileOpen,
+  onLogout
 }) => {
   const handleNavClick = (id: PageId) => {
     setActivePage(id);
@@ -135,24 +140,37 @@ export const Sidebar: React.FC<SidebarProps> = ({
           })}
         </div>
 
-        {/* Footer Class Info Card */}
-        {!collapsed && (
-          <div className="p-4 m-3 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-xs">
-                8B
-              </div>
-              <div className="flex flex-col text-left overflow-hidden">
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
-                  6-maktab, Toshkent
-                </span>
-                <span className="text-[11px] text-slate-400 truncate">
-                  3-Hafta • 1-Chorak
-                </span>
+        {/* Footer Class Info Card & Logout */}
+        <div className="p-3 space-y-2 border-t border-slate-100 dark:border-slate-800/80">
+          {!collapsed && (
+            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-xs">
+                  8B
+                </div>
+                <div className="flex flex-col text-left overflow-hidden">
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
+                    EduFlow Toshkent
+                  </span>
+                  <span className="text-[11px] text-slate-400 truncate">
+                    3-Hafta • 1-Chorak
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+
+          <button
+            onClick={onLogout}
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-transparent hover:border-rose-200/60 dark:hover:border-rose-900/60 ${
+              collapsed ? 'justify-center' : ''
+            }`}
+            title="Hisobdan chiqish"
+          >
+            <LogOut className="w-5 h-5 flex-shrink-0" />
+            {!collapsed && <span>Chiqish</span>}
+          </button>
+        </div>
       </aside>
     </>
   );

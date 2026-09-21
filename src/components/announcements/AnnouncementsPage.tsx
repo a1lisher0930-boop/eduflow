@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Megaphone, Calendar, Tag, Pin, ChevronRight, User } from 'lucide-react';
 import { Card } from '../common/Card';

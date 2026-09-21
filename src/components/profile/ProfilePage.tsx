@@ -1,14 +1,17 @@
+'use client';
+
 import React, { useState } from 'react';
-import { User, GraduationCap, Award, Trophy, FolderGit2, FileCheck, MapPin, Mail, Phone, Calendar } from 'lucide-react';
+import { User, GraduationCap, Award, Trophy, FolderGit2, FileCheck, MapPin, Mail, Phone, Calendar, LogOut } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
 import { StudentProfile } from '../../types';
 
 interface ProfilePageProps {
   student: StudentProfile;
+  onLogout?: () => void;
 }
 
-export const ProfilePage: React.FC<ProfilePageProps> = ({ student }) => {
+export const ProfilePage: React.FC<ProfilePageProps> = ({ student, onLogout }) => {
   const [activeTab, setActiveTab] = useState<'certificates' | 'projects' | 'competitions'>('certificates');
 
   const certificates = [
@@ -53,6 +56,15 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ student }) => {
               <Badge variant="success" size="md">
                 A’lochi O‘quvchi
               </Badge>
+              {onLogout && (
+                <button
+                  onClick={onLogout}
+                  className="ml-auto p-2 px-3 rounded-xl bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Chiqish</span>
+                </button>
+              )}
             </div>
 
             <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
